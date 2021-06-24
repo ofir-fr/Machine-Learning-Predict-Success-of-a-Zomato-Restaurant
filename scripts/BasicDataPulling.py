@@ -12,12 +12,12 @@ Basic Data Pulling
 
 ### Top 5 most votes restaurantes
 ### Top 5 least voted restaurantes
-def topFive(popularity):
+def topFive(popularity, Feature):
     
-    topVotes = popularity.sort_values(by='total_votes', ascending=False).head(5)
-    leastVote = popularity.sort_values(by='total_votes', ascending=False).query('total_votes > 0').tail(5)
+    topValues = popularity.sort_values(by=Feature, ascending=False).head(5)
+    leastValues = popularity.sort_values(by=Feature, ascending=False).query(f'{Feature} > 0').tail(5)
     
-    return topVotes, leastVote
+    return topValues, leastValues
 
 
 
