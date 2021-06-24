@@ -24,6 +24,7 @@ def zomataDFPreProcessing(zomatoDF):
     ###
     
     ### Transforms 'approx_cost(for two people)' from string to float by removing non-numeric values (',')
+    zomatoDF["approx_cost(for two people)"] = zomatoDF["approx_cost(for two people)"].fillna("0")                                 # fills empty samples with the value 0
     zomatoDF["approx_cost(for two people)"]=zomatoDF["approx_cost(for two people)"].astype(str).apply(lambda x:x.replace(',','')) # remove ','
     zomatoDF["approx_cost(for two people)"]=zomatoDF["approx_cost(for two people)"].astype(float)                                 # convert to float
     
