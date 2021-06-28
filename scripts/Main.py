@@ -65,7 +65,9 @@ axes[1].set_title('Online ordering availability')
 axes[1] = plt.subplot2grid((1,2),(0,1))
 plt.pie(zomatoDF['online_order'].value_counts(), labels = ['accept orders', 'do not accept orders'], autopct='%1.0f%%')  # Pie chart showing online oders availability of the restaurants
 
-
+### Best budget restaurant
+budgetRestaurants = restaurantsFiler(zomatoDF, 400, 'BTM', 4, 'Quick Bites'):
+budgetRestaurants['name'].unique()
 
 
 
