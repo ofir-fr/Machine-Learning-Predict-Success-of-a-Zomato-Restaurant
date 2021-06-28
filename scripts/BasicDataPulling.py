@@ -27,3 +27,9 @@ def restaurantsFiler(restaurantsDF, maxPrice, location, votesRate, foodType):
     filterRestaurantsIndex = (restaurantsDF['approx_cost(for two people)'] <= maxPrice) & (restaurantsDF['location'] == location) & (restaurantsDF['rate'] >= votesRate) & (restaurantsDF['rest_type'] == foodType)
     filteredRestaurants = restaurantsDF[filterRestaurantsIndex]
     return filteredRestaurants
+
+
+
+
+
+
