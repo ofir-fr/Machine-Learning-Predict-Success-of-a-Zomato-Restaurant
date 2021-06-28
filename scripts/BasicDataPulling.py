@@ -20,8 +20,10 @@ def topFive(popularity, Feature):
     return topValues, leastValues
 
 
+### data frame filter by max price, location, rating and food type
 
+def restaurantsFiler(restaurantsDF, maxPrice, location, votesRate, foodType):
 
-
-
-## tbc
+    filterRestaurantsIndex = (restaurantsDF['approx_cost(for two people)'] <= maxPrice) & (restaurantsDF['location'] == location) & (restaurantsDF['rate'] >= votesRate) & (restaurantsDF['rest_type'] == foodType)
+    filteredRestaurants = restaurantsDF[filterRestaurantsIndex]
+    return filteredRestaurants
