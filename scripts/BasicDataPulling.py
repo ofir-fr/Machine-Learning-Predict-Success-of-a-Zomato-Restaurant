@@ -27,7 +27,33 @@ def restaurantsFiler(restaurantsDF, maxPrice, location, votesRate, foodType):
     filteredRestaurants = restaurantsDF[filterRestaurantsIndex]
     return filteredRestaurants
 
+### Translate adresses to geolocations
+### Returns a new data frame with name and geolocation [lat and lon]
 
+
+def restaurantesGeolocation (restaurantsDF):
+    
+    restaurantsGeolocation = pd.DataFrame({'Name':restaurantsDF['location'].unique()})
+    
+    lat=[]
+    lon=[]
+    
+    for location in restaurantsGeolocation['Name']:
+        location=geolocator.geocode(location)
+        if location is None:
+            lat.append(np.nan)
+            lon.append(np.nan)
+        else:
+            lat.append(location.latitude)
+            lon.append(location.longitude)
+            
+    restaurantsGeolocation['latitude'] = lat
+    restaurantsGeolocation['longitude'] = lon
+    
+    Return restaurantsGeolocation
+    
+    
+    
 
 
 
