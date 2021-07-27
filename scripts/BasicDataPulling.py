@@ -53,7 +53,6 @@ def restaurantesGeolocation(restaurantsDF):
     Return restaurantsGeolocation
     
     
-    
 
 
 
