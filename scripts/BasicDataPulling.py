@@ -31,7 +31,10 @@ def restaurantsFiler(restaurantsDF, maxPrice, location, votesRate, foodType):
 ### Translate adresses to geolocations
 ### Returns a new data frame with name and geolocation [lat and lon]
 
-def restaurantesGeolocation(restaurantsDF):
+
+def restaurantesGeolocation (restaurantsDF):
+    
+
     
     restaurantsGeolocation = pd.DataFrame({'Name':restaurantsDF['location'].unique()})
     
