@@ -12,6 +12,10 @@ import seaborn as sn
 
 #!pip install geopy
 from geopy.geocoders import Nominatim
+#!pip install folium
+import folium
+from folium.plugins import HeatMap
+
 
 from DF_PreProcessing import *
 from BasicDataPulling import *
