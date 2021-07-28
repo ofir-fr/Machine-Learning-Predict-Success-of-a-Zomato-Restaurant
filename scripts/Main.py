@@ -76,7 +76,15 @@ def main():
     budgetRestaurants = restaurantsFiler(zomatoDF, 400, 'BTM', 4, 'Quick Bites'):
     budgetRestaurants['name'].unique()
 
-
+    ### Generate Geolocation map of the restaurants
+    geolocator = Nominatim(user_agent='app')                     # geolocator class object
+    data = geolocator.geocode(zomatoDF['name'][0])               # geoPosition object
+    restaurantsLocations = restaurantesGeolocation(zomatoDF)     # Calls function 'restaurantesGeolocation' that returns geolocation of all restaurants on the DF
+    restaurantsLocations = restaurantsLocations.dropna()         # Remove unfound restaurants from the locations DF - note: investigate why restaurant was nto found
+    
+    Basemap = folium.Map(location=[12.97,77.59])                                        # Initial positioning of the map in the gloab
+    HeatMap(data = restaurantsLocations[['latitude','longitude']]).add_to(Basemap)      # Add restaurant locations to the map
+    Basemap 
  
 if __name__ == "__main__":
     main()
