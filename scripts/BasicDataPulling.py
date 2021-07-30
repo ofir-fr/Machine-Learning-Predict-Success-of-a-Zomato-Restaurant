@@ -59,14 +59,16 @@ def restaurantesGeolocation (restaurantsDF):
 
 ### Returns a WordCloud object of top dishes by users based on restaurant type
 
-def retrieveWordCloud(zomatoDF, RestaurantType):
+def retrieveMealsWordCloud(zomatoDF, RestaurantType):
+    
+    from wordcloud import WordCloud, STOPWORDS
     
     if RestaurantType == 'all':
         restaurantWordsDF = zomatoDF                                          # use the entire DF
     elif zomatoDF['rest_type'].str.contains(RestaurantType).any():
         restaurantWordsDF = zomatoDF[zomatoDF['rest_type'] == RestaurantType] # unique Restaurant Type filtering of the DF
     else:
-        return None                                          # restaurant type waf not found
+        return None                                          # restaurant type was not found
     
     dishes = ''                                              # list to individual dishes 
     
@@ -77,5 +79,28 @@ def retrieveWordCloud(zomatoDF, RestaurantType):
         dishes = dishes +' '.join(wordsList)+' '             # merge words list
         
     stopwordsList = set(STOPWORDS)                           # list of stop words that we dont want to show in the word cloud
+   
     return WordCloud(stopwords = stopwordsList, width = 1500, height = 1500).generate(dishes)        #generate and return the word cloud
     
+
+### Returns a WordCloud object of top words in the reviews based on restaurant type
+
+def retrieveReviewsWordCloud(zomatoDF, RestaurantType):
+    
+    from wordcloud import WordCloud, STOPWORDS
+    
+    if RestaurantType == 'all':
+        reviewslistsDF = zomatoDF                                             # use the entire DF
+    elif zomatoDF['rest_type'].str.contains(RestaurantType).any():
+        reviewslistsDF = zomatoDF[zomatoDF['rest_type'] == RestaurantType]    # unique Restaurant Type filtering of the DF
+    else:
+        return None                                                           # restaurant type was not found
+
+    totalReviews = ''
+
+    for review in reviewslistsDF['reviews_list']:
+        totalReviews = totalReviews + ' '.join(word for word in (str(review)).split() if len(word) >= 3)   # Accumulate all review words if >= 3 letters
+        
+    stopwordsList = set(STOPWORDS)      
+   
+    return WordCloud(stopwords = stopwordsList, width = 1500, height = 1500).generate(totalReviews)    
