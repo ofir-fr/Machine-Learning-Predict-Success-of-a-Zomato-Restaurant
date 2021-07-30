@@ -17,6 +17,8 @@ import folium
 from folium.plugins import HeatMap
 #!pip install wordcloud
 from wordcloud import wordcloud, STOPWORDS
+#!pip install wordcloud
+from wordcloud import WordCloud, STOPWORDS
 
 from DF_PreProcessing import *
 from BasicDataPulling import *
@@ -87,5 +89,11 @@ def main():
     HeatMap(data = restaurantsLocations[['latitude','longitude']]).add_to(Basemap)      # Add restaurant locations to the map
     Basemap 
  
+    ### Generate words analyser to identify the most common meals
+    zomatoWordCloud = retrieveWordCloud(zomatoDF)               # Call word cloud generator function with relevant DF    
+    plt.axis('off')                                             # Turn off graph axis
+    plt.imshow(zomatoWordCloud)                                 # Generate word cloud image
+
+
 if __name__ == "__main__":
     main()
