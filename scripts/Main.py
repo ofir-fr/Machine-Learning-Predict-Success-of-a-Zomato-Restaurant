@@ -90,9 +90,9 @@ def main():
     Basemap 
  
     ### Generate words analyser to identify the most common meals
-    zomatoWordCloud = retrieveWordCloud(zomatoDF)               # Call word cloud generator function with relevant DF    
-    plt.axis('off')                                             # Turn off graph axis
-    plt.imshow(zomatoWordCloud)                                 # Generate word cloud image
+    zomatoWordCloud = retrieveWordCloud(zomatoDF, input("Restaurant type: "))    # Call word cloud generator function with relevant DF and restaurant type    
+    plt.axis('off')                                                              # Turn off graph axis
+    plt.imshow(zomatoWordCloud)                                                  # Generate word cloud image
 
 
 if __name__ == "__main__":
