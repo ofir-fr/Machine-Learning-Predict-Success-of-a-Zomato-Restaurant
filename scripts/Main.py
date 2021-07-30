@@ -76,7 +76,7 @@ def main():
     plt.pie(zomatoDF['online_order'].value_counts(), labels = ['accept orders', 'do not accept orders'], autopct='%1.0f%%')  # Pie chart showing online oders availability of the restaurants
     
     ### Best budget restaurant
-    budgetRestaurants = restaurantsFiler(zomatoDF, 400, 'BTM', 4, 'Quick Bites'):
+    budgetRestaurants = restaurantsFiler(zomatoDF, 400, 'BTM', 4, 'Quick Bites')
     budgetRestaurants['name'].unique()
 
     ### Generate Geolocation map of the restaurants
@@ -90,9 +90,13 @@ def main():
     Basemap 
  
     ### Generate words analyser to identify the most common meals
-    zomatoWordCloud = retrieveWordCloud(zomatoDF, input("Restaurant type: "))    # Call word cloud generator function with relevant DF and restaurant type    
-    plt.axis('off')                                                              # Turn off graph axis
-    plt.imshow(zomatoWordCloud)                                                  # Generate word cloud image
+    restaurantTypeWords = input("Restaurant type ('all' = no filtering): ")             # Ask user for restaurant type
+    zomatoWordCloud = retrieveWordCloud(zomatoDF, restaurantTypeWords)                  # Call word cloud generator function with relevant DF and restaurant type    
+    if zomatoWordCloud == None:                                                         # If restaurant type is not availble an error will return
+        print('error occured')
+    else:
+        plt.axis('off')                                                                 # Turn off graph axis
+        plt.imshow(zomatoWordCloud)       
 
 
 if __name__ == "__main__":
