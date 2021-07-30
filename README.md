@@ -3,8 +3,6 @@ Apply machine learning on a restaurante database. Study and analyse the data for
 
 
 
-### Under Construction ###
-
 
 Popular meals:
 
@@ -14,3 +12,6 @@ Popular meals:
 Popular comments:
 
 ![Figure 2021-07-30 174743](https://user-images.githubusercontent.com/85901822/127670696-8753bbde-f271-4e8b-8a48-2b8f1f1b5339.png)
+
+
+
