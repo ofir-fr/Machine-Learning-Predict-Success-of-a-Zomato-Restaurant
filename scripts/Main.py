@@ -15,7 +15,8 @@ from geopy.geocoders import Nominatim
 #!pip install folium
 import folium
 from folium.plugins import HeatMap
-
+#!pip install wordcloud
+from wordcloud import wordcloud, STOPWORDS
 
 from DF_PreProcessing import *
 from BasicDataPulling import *
