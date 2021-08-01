@@ -2,6 +2,9 @@
 Apply machine learning on a restaurante database. Study and analyse the data for prediction of a successful restaurant.
 
 
+Restaurans Geolocation:
+
+![2](https://user-images.githubusercontent.com/85901822/127760558-a304ada2-9f0e-4684-ab54-51aea961c9e9.PNG)
 
 
 Popular meals:
