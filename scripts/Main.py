@@ -118,6 +118,10 @@ def main():
         plt.axis('off')                                                                 # Turn off graph axis
         plt.imshow(zomatoReviewsMealsWordCloud)                                                     # Generate word cloud image   
     
+    
+    ### initiatorMachineLearning(zomatoDF)
+    
+    
 
 if __name__ == "__main__":
     main()
