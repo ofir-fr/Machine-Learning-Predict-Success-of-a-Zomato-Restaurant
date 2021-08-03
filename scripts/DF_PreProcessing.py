@@ -55,7 +55,19 @@ def zomataDFPreProcessing(zomatoDF):
     zomatoDF["rate"].update(SplitedRate)                                    # update 'rate' with the new values
     zomatoDF["rate"] = zomatoDF["rate"].astype(float)                       # convert the array to float
 
+    
+    ### Add a new column to seperate new and old restaurants by their rating value.
+    ### 0 rating equals to a new unrated restaurant
 
+    def assign(x):
+        if x > 0:
+            return 1
+        else:
+            return 0
+        
+    zomatoDF['rated'] = zomatoDF['rate'].apply(assign)
+    
+    
     ### Removal of irrelevant text from the reviews
 
     cleanReviews= []
