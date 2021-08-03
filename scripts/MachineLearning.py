@@ -12,3 +12,10 @@ def initiatorMachineLearning(zomatoDF):
     newRestauransDF = zomatoDF[zomatoDF['rated']==0]
 
     trainTestRestaurantsDF = zomatoDF[zomatoDF['rated']==1]
+    
+    
+    
+    
+    
+    
+    
