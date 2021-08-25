@@ -12,14 +12,14 @@ def initiatorMachineLearning(zomatoDF, thresholdRating):
     newRestauransDF = zomatoDF[zomatoDF['rated']==0]
 
     trainTestRestaurantsDF = zomatoDF[zomatoDF['rated']==1]
-    
-    
+
+
     ### Creation of target:
     ### rating > thresholdRating for good reateurants and rating <= thresholdRating equals bad restaurants
-    
-   trainTestRestaurantsDF['target'] = trainTestRestaurantsDF.apply(lambda x:i if x > threshold else 0)
-    
-  
+
+    trainTestRestaurantsDF['target'] = trainTestRestaurantsDF.apply(lambda x:1 if x > threshold else 0)
+
+    return trainTestRestaurantsDF
     
     
     
