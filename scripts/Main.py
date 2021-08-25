@@ -120,6 +120,8 @@ def main():
     
     
     ### initiatorMachineLearning(zomatoDF)
+    trainTestRestaurantsDF = initiatorMachineLearning(zomatoDF, 75):                                                # prepare target data with 1/0 for old and new restaurants
+    plt.pie(trainTestRestaurantsDF['target'].value_counts(),labels=trainTestRestaurantsDF['target'].value_counts().index) # examine if the groups are balanced
     
     
 
