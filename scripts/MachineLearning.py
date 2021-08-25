@@ -19,7 +19,7 @@ def initiatorMachineLearning(zomatoDF, thresholdRating):
     
    trainTestRestaurantsDF['target'] = trainTestRestaurantsDF.apply(lambda x:i if x > threshold else 0)
     
-    
+  
     
     
     
