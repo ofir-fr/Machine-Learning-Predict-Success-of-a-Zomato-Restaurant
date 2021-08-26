@@ -24,7 +24,14 @@ def initiatorMachineLearning(zomatoDF, thresholdRating):
       
    # New feature: multiple_rest_type - the amount of meal types in each restaurant
    trainTestRestaurantsDF['multiple_rest_type'] = trainTestRestaurantsDF['rest_type'].astype(str).apply(lambda x: len(x.split(',')))
-    
+   
+
+    # Feature to be considered in the machien learning
+    top_features=['online_order', 'book_table', 'location', 'rest_type',
+       'approx_cost(for two people)', 'listed_in(type)', 'listed_in(city)', 'target',
+       'total_cuisines', 'multiple_rest_type']
+   
+   reducedTrainTestRestaurantsDF = trainTestRestaurantsDF[top_features] 
     
    return trainTestRestaurantsDF
     
