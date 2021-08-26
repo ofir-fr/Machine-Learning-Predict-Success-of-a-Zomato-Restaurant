@@ -3,6 +3,7 @@ Zomata Project: PreProcessing
 
 """""""""""
 
+### Clean and organize raw data
 def zomataDFPreProcessing(zomatoDF):
 
     import numpy as np
@@ -91,3 +92,42 @@ def zomataDFPreProcessing(zomatoDF):
 
 
     return zomatoDF
+
+
+### Define and organize existing and deducable features for better ML processing
+def zomataDFReorganizing(zomatoDF, thresholdRating):
+
+    newRestauransDF = zomatoDF[zomatoDF['rated']==0]
+    
+    trainTestRestaurantsDF = zomatoDF[zomatoDF['rated']==1]
+     
+     
+    ### Creation of target:
+    ### rating > thresholdRating for good reateurants and rating <= thresholdRating equals bad restaurants
+     
+    trainTestRestaurantsDF['target'] = trainTestRestaurantsDF.apply(lambda x:1 if x > threshold else 0)
+    
+    # New feature: total_cuisines - the amount of meal dishes in each restaurant
+    trainTestRestaurantsDF['total_cuisines'] = trainTestRestaurantsDF['cuisines'].astype(str).apply(lambda x: len(x.split(',')))
+    
+    
+    # New feature: multiple_rest_type - the amount of meal types in each restaurant
+    trainTestRestaurantsDF['multiple_rest_type'] = trainTestRestaurantsDF['rest_type'].astype(str).apply(lambda x: len(x.split(',')))
+    
+    
+    # Feature to be considered in the machien learning
+     
+    top_features=['online_order', 'book_table', 'location', 'rest_type',
+    'approx_cost(for two people)', 'listed_in(type)', 'listed_in(city)', 'target',
+    'total_cuisines', 'multiple_rest_type']
+    
+    reducedTrainTestRestaurantsDF = trainTestRestaurantsDF[top_features]
+    
+    reducedTrainTestRestaurantsDF.dropna(how='any',inplace=True)
+    
+    return reducedTrainTestRestaurantsDF
+
+
+
+
+
