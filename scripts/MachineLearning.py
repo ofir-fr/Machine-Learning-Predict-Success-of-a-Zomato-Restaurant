@@ -19,6 +19,10 @@ def initiatorMachineLearning(zomatoDF, thresholdRating):
 
     trainTestRestaurantsDF['target'] = trainTestRestaurantsDF.apply(lambda x:1 if x > threshold else 0)
 
+    # New feature: total_cuisines - the amount of meal types in each restaurant
+    trainTestRestaurantsDF['total_cuisines'] = trainTestRestaurantsDF['cuisines'].astype(str).apply(lambda x: len(x.split(',')))
+    
+    
     return trainTestRestaurantsDF
     
     
