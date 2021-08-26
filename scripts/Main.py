@@ -119,13 +119,25 @@ def main():
         plt.imshow(zomatoReviewsMealsWordCloud)                                                     # Generate word cloud image   
     
     
+    ####################################
+    ### Final reorganizing of the DF ###
+    ####################################
+
+    
+    trainTestRestaurantsDF = zomataDFReorganizing(zomatoDF, 75):                                                # prepare target data with 1/0 for old and new restaurants
+    plt.pie(trainTestRestaurantsDF['target'].value_counts(),labels=trainTestRestaurantsDF['target'].value_counts().index) # examine if the groups are balanced
+
+    
+    # Seperate numerice and non-numeric features
+    objectFeaturesList = [column for column in reducedTrainTestRestaurantsDF.columns if reducedTrainTestRestaurantsDF[column].dtype=='O']
+    numericalFeaturesList = [column for column in reducedTrainTestRestaurantsDF.columns if reducedTrainTestRestaurantsDF[column].dtype!='O']
+
+    for feature in objectFeaturesList:
+      print('{} has totayl {} unique features'.format(feature,reducedTrainTestRestaurantsDF[feature].nunique()))
+    
     ###########################################
     ### initiate Machine Learning(zomatoDF) ###
-    ###########################################
-    
-    trainTestRestaurantsDF = initiatorMachineLearning(zomatoDF, 75):                                                # prepare target data with 1/0 for old and new restaurants
-    plt.pie(trainTestRestaurantsDF['target'].value_counts(),labels=trainTestRestaurantsDF['target'].value_counts().index) # examine if the groups are balanced    
-    
+    ###########################################    
 
 if __name__ == "__main__":
     main()
