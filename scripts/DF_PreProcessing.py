@@ -95,6 +95,9 @@ def zomataDFPreProcessing(zomatoDF):
 
 
 ### Define and organize existing and deducable features for better ML processing
+# split the data to two categories: 
+# new restaurant - 0 rate
+# old restaurants with rating different then 0 for the trainning models 
 def zomataDFReorganizing(zomatoDF, thresholdRating):
 
     newRestauransDF = zomatoDF[zomatoDF['rated']==0]
