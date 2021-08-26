@@ -33,7 +33,7 @@ def initiatorMachineLearning(zomatoDF, thresholdRating):
    
    reducedTrainTestRestaurantsDF = trainTestRestaurantsDF[top_features] 
     
-   return trainTestRestaurantsDF
+   return reducedTrainTestRestaurantsDF
     
     
     
