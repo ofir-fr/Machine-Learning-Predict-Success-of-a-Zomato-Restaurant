@@ -129,6 +129,14 @@ def zomataDFReorganizing(zomatoDF, thresholdRating):
     
     reducedTrainTestRestaurantsDF.dropna(how='any',inplace=True)
     
+    # ~update description~ 
+    value = (reducedTrainTestRestaurantsDF['location'].value_counts()/len(reducedTrainTestRestaurantsDF))*100
+    reducedTrainTestRestaurantsDF['location'] = np.where(reducedTrainTestRestaurantsDF['location'].isin(value[:]>0.4),reducedTrainTestRestaurantsDF['location'],'other')
+    
+
+    
+    
+    
     return reducedTrainTestRestaurantsDF
 
 
