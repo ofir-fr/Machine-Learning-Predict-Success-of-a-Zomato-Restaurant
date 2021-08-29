@@ -129,10 +129,12 @@ def zomataDFReorganizing(zomatoDF, thresholdRating):
     
     reducedTrainTestRestaurantsDF.dropna(how='any',inplace=True)
     
-    # ~update description~ 
-    value = (reducedTrainTestRestaurantsDF['location'].value_counts()/len(reducedTrainTestRestaurantsDF))*100
-    reducedTrainTestRestaurantsDF['location'] = np.where(reducedTrainTestRestaurantsDF['location'].isin(value[:]>0.4),reducedTrainTestRestaurantsDF['location'],'other')
+    # removal on location that can be found in less then thresholdLocation of the data (define as background noise)
     
+    value = (reducedTrainTestRestaurantsDF['location'].value_counts()/len(reducedTrainTestRestaurantsDF))*100
+    imp = value>thresholdLocation
+
+    reducedTrainTestRestaurantsDF['location'] = np.where(reducedTrainTestRestaurantsDF['location'].isin(imp.index),reducedTrainTestRestaurantsDF['location'],'other')
 
     
     
