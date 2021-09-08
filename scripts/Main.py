@@ -128,12 +128,20 @@ def main():
     plt.pie(trainTestRestaurantsDF['target'].value_counts(),labels=trainTestRestaurantsDF['target'].value_counts().index) # examine if the groups are balanced
 
     
-    # Seperate numerice and non-numeric features
+    ### Seperate numerice and non-numeric features
+    
     objectFeaturesList = [column for column in reducedTrainTestRestaurantsDF.columns if reducedTrainTestRestaurantsDF[column].dtype=='O']
     numericalFeaturesList = [column for column in reducedTrainTestRestaurantsDF.columns if reducedTrainTestRestaurantsDF[column].dtype!='O']
 
-    for feature in objectFeaturesList:
-      print('{} has totayl {} unique features'.format(feature,reducedTrainTestRestaurantsDF[feature].nunique()))
+    
+    ### Apply One-hot Encoding to the filltered data
+    
+    reducedTrainTestRestaurantsDF_cat = trainTestRestaurantsDF[objectFeaturesList]
+    
+    for col in objectFeaturesList:
+        reducedTrainTestRestaurantsDF_encoded = pd.get_dummies(reducedTrainTestRestaurantsDF_cat[col], prefix=col, drop_first=True)
+        reducedTrainTestRestaurantsDF_cat = pd.concat([reducedTrainTestRestaurantsDF_cat,reducedTrainTestRestaurantsDF_encoded], axis=1)
+        reducedTrainTestRestaurantsDF_cat.drop(col, axis =1, inplace = True)
     
     ###########################################
     ### initiate Machine Learning(zomatoDF) ###
