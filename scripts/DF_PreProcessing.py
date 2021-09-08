@@ -131,8 +131,16 @@ def zomataDFReorganizing(zomatoDF, thresholdRating):
     
     # removal on location that can be found in less then thresholdLocation of the data (define as background noise)
     
-    reducedTrainTestRestaurantsDF['location'] = reducedTrainTestRestaurantsDF['location'].apply(lambda x: 'other' if x not in imp.index else x)
+    value = (reducedTrainTestRestaurantsDF['location'].value_counts()/len(reducedTrainTestRestaurantsDF))*100
+    imp = value>thresholdLocation
 
+    imp = []
+    
+    for i in range(0,len(value)):
+        if value[i]>thresholdLocation:
+            imp.append(value.index[i])
+
+    reducedTrainTestRestaurantsDF['location'] = reducedTrainTestRestaurantsDF['location'].apply(lambda x: 'other' if x in imp else x)
     
     
     
