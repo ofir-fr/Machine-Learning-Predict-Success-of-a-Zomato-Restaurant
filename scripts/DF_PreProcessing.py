@@ -142,6 +142,7 @@ def zomataDFReorganizing(zomatoDF, thresholdRating):
 
     reducedTrainTestRestaurantsDF['location'] = reducedTrainTestRestaurantsDF['location'].apply(lambda x: 'other' if x in imp else x)
     
+    
     # removal of food types that can be found in less then thresholdFoodtype of the data (define as background noise)
     
     value = (reducedTrainTestRestaurantsDF['rest_type'].value_counts()/len(reducedTrainTestRestaurantsDF))*100
