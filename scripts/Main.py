@@ -19,8 +19,14 @@ from folium.plugins import HeatMap
 #!pip install wordcloud
 from wordcloud import WordCloud, STOPWORDS
 
+from sklearn.model_selection import train_test_split
+from sklearn.ensemble import RandomForestClassifier
+from sklearn.metrics import confusion_matrix, accuracy_score
+
+
 from DF_PreProcessing import *
 from BasicDataPulling import *
+from MachineLearning import *
 
 def main():
     
@@ -124,10 +130,10 @@ def main():
     ####################################
 
     
-    trainTestRestaurantsDF = zomataDFReorganizing(zomatoDF, 75, 0.4, 1.5)                                 # prepare target data with 1/0 for old and new restaurants
+    trainTestRestaurantsDF = zomataDFReorganizing(zomatoDF, 75, 0.4, 1.5)                  # prepare target data with 1/0 for old and new restaurants
     plt.pie(trainTestRestaurantsDF['target'].value_counts(),labels=trainTestRestaurantsDF['target'].value_counts().index) # examine if the groups are balanced
 
-    
+
     ### Seperate numerice and non-numeric features
     
     objectFeaturesList = [column for column in reducedTrainTestRestaurantsDF.columns if reducedTrainTestRestaurantsDF[column].dtype=='O']
@@ -143,14 +149,25 @@ def main():
         reducedTrainTestRestaurantsDF_cat = pd.concat([reducedTrainTestRestaurantsDF_cat,reducedTrainTestRestaurantsDF_encoded], axis=1)
         reducedTrainTestRestaurantsDF_cat.drop(col, axis =1, inplace = True)
     
+    reducedTrainTestRestaurantsDF_cat.columns
+
+    # merge unencoded data
+    reducedTrainTestRestaurantsDFFinal = pd.concat([reducedTrainTestRestaurantsDF.loc[:,['approx_cost(for two people)', 'target', 'total_cuisines', 'multiple_rest_type']], reducedTrainTestRestaurantsDF_cat], axis=1)
+
+       
     ###########################################
     ### initiate Machine Learning(zomatoDF) ###
-    ###########################################    
+    ###########################################
+    
+    
+    ### Appling random forest: DF, testSize, randomState
+    predictionsRandomForest, confusionMatrixRandomForest, accuracyScoreRandomForest = applyRandomForest (reducedTrainTestRestaurantsDFFinal, test_size = 0.2, random_state = 47)
 
-    
-    
-    
-    
-    
+
+
+
+
+
+
 if __name__ == "__main__":
     main()
