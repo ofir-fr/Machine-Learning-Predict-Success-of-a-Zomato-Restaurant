@@ -23,3 +23,6 @@ def applyRandomForest(finalZomatoDF, testSize, randomState):
     
    return predictions, confusion_matrix(predictions, y_test), accuracy_score(predictions, y_test)
     
+
+
+
