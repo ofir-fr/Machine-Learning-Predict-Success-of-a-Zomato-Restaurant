@@ -21,15 +21,5 @@ def applyRandomForest(finalZomatoDF, testSize, randomState):
     
     predictions = model.predict(x_test)
     
-    confusion_matrix(predictions, y_test)
-    
-    accuracy_score(predictions, y_test)
-   
-   return predictions, confusion_matrix, accuracy_score
-    
-    
-    
-    
-    
-    
+   return predictions, confusion_matrix(predictions, y_test), accuracy_score(predictions, y_test)
     
