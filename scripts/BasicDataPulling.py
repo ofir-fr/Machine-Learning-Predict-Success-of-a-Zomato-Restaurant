@@ -35,8 +35,6 @@ def restaurantsFiler(restaurantsDF, maxPrice, location, votesRate, foodType):
 
 def restaurantesGeolocation (restaurantsDF):
     
-
-    
     restaurantsGeolocation = pd.DataFrame({'Name':restaurantsDF['location'].unique()})
     
     lat=[]
