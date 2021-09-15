@@ -33,7 +33,6 @@ from DF_PreProcessing import *
 from BasicDataPulling import *
 from MachineLearning import *
 
-
 def main():
     
     zomatoDF = pd.read_csv('zomato.csv')                 # Database Import
@@ -165,14 +164,28 @@ def main():
     ### initiate Machine Learning(zomatoDF) ###
     ###########################################
     
-    
-    ### Appling random forest: DF, testSize, randomState
-    predictionsRandomForest, confusionMatrixRandomForest, accuracyScoreRandomForest = applyRandomForest (reducedTrainTestRestaurantsDFFinal, test_size = 0.2, random_state = 47)
+
+    x_train, x_test, y_train, y_test = prepareTrainTestSplit(reducedTrainTestRestaurantsDFFinal, test_size = 0.2, random_state = 47)
 
 
+    models = []
 
+    models.append(('LogisticRegression',LogisticRegression()))
+    models.append(('Naive Bayes', GaussianNB()))
+    models.append(('RandomForest', RandomForestClassifier()))
+    models.append(('DecisionTree', DecisionTreeClassifier()))
+    models.append(('KNN', KNeighborsClassifier()))
+    models.append(('xg', KNeighborsClassifier()))
 
-
+    for name,model in models:
+        print(name)
+        model.fit(x_train, y_train)
+        predictions = model.predict(x_test)
+        cm=confusion_matrix(predictions, y_test)
+        acs=accuracy_score(predictions, y_test)
+        print(cm)
+        print(acs)
+        print('\n')
 
 
 if __name__ == "__main__":
