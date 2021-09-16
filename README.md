@@ -32,7 +32,7 @@ Statistics on orders availability:
 ![Orders](https://user-images.githubusercontent.com/85901822/133610463-9be9d13e-871b-400d-9003-6580f316e12a.png)
 
 
-Most Common restaurant type:
+Most common restaurant type:
 
 ![MajorFood](https://user-images.githubusercontent.com/85901822/133610535-7db193a3-933f-47d8-bf60-e0017cca215d.png)
 
