@@ -17,4 +17,25 @@ Popular comments:
 ![Figure 2021-07-30 174743](https://user-images.githubusercontent.com/85901822/127670696-8753bbde-f271-4e8b-8a48-2b8f1f1b5339.png)
 
 
+Top 5 most and least expensive restaurants:
+
+![Top5Price](https://user-images.githubusercontent.com/85901822/133610290-cf51a142-9028-4fd1-b38b-b300dc065efd.png)
+
+
+Top 5 most and least voted restaurants:
+
+![Top5Voted](https://user-images.githubusercontent.com/85901822/133610343-51a52dff-1657-4305-82b9-82f1cc57fb85.png)
+
+
+Statistics on orders availability:
+
+![Orders](https://user-images.githubusercontent.com/85901822/133610463-9be9d13e-871b-400d-9003-6580f316e12a.png)
+
+
+Most Common restaurant type:
+
+![MajorFood](https://user-images.githubusercontent.com/85901822/133610535-7db193a3-933f-47d8-bf60-e0017cca215d.png)
+
+
+
 
